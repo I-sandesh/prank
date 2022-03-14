@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaisa Lga Mera Mazak (●'◡'●)</title>
+    <style>
+        body{
+            background-color: black;
+            width: 110vw;
+            overflow: hidden;
+        }
+        .box {
+            /* background: #092b29; */
+            background: linear-gradient(black,#00FF,#00FF55);
+            display: inline-block;
+            text-align: center;
+            padding: 6vh;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            width: 15rem;
+            transition: 2s;
+        }
+
+        .box p {
+            margin-bottom: 7vh;
+            color: white;
+        }
+        .box button{
+            padding: 2vh 5vh;
+            margin-bottom: -20px;
+            background-color: #00FFF5;
+            /* border: 1px solid rgb(20, 211, 195); */
+            border: none;
+            box-shadow: 0 0 5px #2180c0,
+            0 0 25px #2180c0,
+            0 0 50px #2180c0,
+            0 0 100px #2180c0;
+        }
+        button:hover{
+        box-shadow: 0 0 5px #00FFF5,
+            0 0 25px #00FFF5,
+            0 0 50px #00FFF5,
+            0 0 100px #00FFF5;
+
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p>Are You Mad?</p>
+        <button onclick="judge(0)">No</button>
+        <button onclick="judge(1)">Yes</button>
+    </div>
+
+    <script>
+        const box = document.querySelector(".box");
+        const audio = new Audio("./noo.mp3");
+        function judge(bool) {
+            if (bool) {
+                box.innerHTML = ("Pta Tha Mujhe Tum Pagal Ho 🤣😁😂");
+                audio.play()
+            } else {
+                let b = box.getBoundingClientRect();
+                console.log(b)
+                let sx = b.x + random(-160,160);
+                let sy = b.y + random(-160,160);
+                if(sx<0){
+                    sx += random(100,200);
+                }else if(sx+b.width>innerWidth){
+                    sx -= random(100,200);
+                }
+
+                if(sy<0){
+                    sy += random(100,200);
+                }else if(sy+b.height>innerHeight){
+                    sy -= random(100,200);
+                }
+                // box.style.transition = `${Math.floor(sx+sy)}ms`;
+                box.style.left = sx + "px";
+
+                box.style.top = sy + "px";
+            }
+        }
+        function random(m,mx) {
+            return m + Math.floor(Math.random() * (mx-m));
+        }
+        // setInterval(()=>{
+        //     judge(0)
+        // },1200)
+    </script>
+</body>
+
+</html>
